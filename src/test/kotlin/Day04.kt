@@ -70,9 +70,9 @@ private fun firstOverlappingSecond(sections: Pair<Pair<Int, Int>, Pair<Int, Int>
     sections.second.first <= sections.first.second && sections.second.second >= sections.first.first
 
 private fun parseSections(input: String) =
-    input.split("\n").map {
-        val sections = it.split(",").map {
-            val section = it.trim().split("-").map { it.trim().toInt() }
+    input.split("\n").map { line ->
+        val sections = line.split(",").map {parts ->
+            val section = parts.trim().split("-").map { it.trim().toInt() }
             Pair(section[0], section[1])
         }
         Pair(sections[0], sections[1])

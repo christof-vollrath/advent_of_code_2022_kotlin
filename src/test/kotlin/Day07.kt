@@ -71,7 +71,7 @@ class Day07Part1: BehaviorSpec() { init {
                     fileSystem.calculateTotalSizes()
                     Then("should have calculated the total sizes") {
                         fileSystem.root.totalSize shouldBe 48381165
-                        fileSystem.root.dirs.get("a")?.dirs?.get("e")?.totalSize shouldBe 584
+                        fileSystem.root.dirs["a"]?.dirs?.get("e")?.totalSize shouldBe 584
                     }
                     When("listing all dir sizes") {
                         val dirs = fileSystem.allDirsBySize().reversed()
@@ -138,7 +138,7 @@ private fun findDirToDelete(totalDiskSize: Int, needed: Int, fileSystem: FileSys
 }
 
 private fun executeFileSystemCommands(commands: List<FileSystemCommand>): FileSystem {
-    val root: FileSystemDirectory = FileSystemDirectory("/")
+    val root = FileSystemDirectory("/")
     var currentDir: FileSystemDirectory? = null
     for (command in commands) {
         when(command) {
@@ -152,12 +152,12 @@ private fun executeFileSystemCommands(commands: List<FileSystemCommand>): FileSy
                         moveTo
                     }
                 }
-            is LsSystemCommand -> currentDir?.files = command.files.map { fileData ->
-                when(fileData) {
+            is LsSystemCommand -> currentDir?.files = command.files.associate { fileData ->
+                when (fileData) {
                     is PlainFileData -> Pair(fileData.name, FileSystemPlainFile(fileData.name, fileData.size))
                     is DirFileData -> Pair(fileData.name, FileSystemDirectory(fileData.name, currentDir))
                 }
-            }.toMap()
+            }
         }
     }
     return FileSystem(root)
