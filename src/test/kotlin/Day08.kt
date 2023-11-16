@@ -56,9 +56,9 @@ class Day08Part1: BehaviorSpec() { init {
     }
 
     Given("exercise input") {
-        val execiseInput = readResource("inputDay08.txt")!!
+        val exerciseInput = readResource("inputDay08.txt")!!
         When("parse tree map") {
-            val treeMap = parseTreeMap(execiseInput)
+            val treeMap = parseTreeMap(exerciseInput)
             Then("it should have parsed the map to a 99x99 map") {
                 treeMap.size shouldBe 99
                 for (line in treeMap) line.size shouldBe 99
@@ -101,8 +101,8 @@ class Day08Part2: BehaviorSpec() { init {
     }
 
     Given("exercise input") {
-        val execiseInput = readResource("inputDay08.txt")!!
-        val treeMap = parseTreeMap(execiseInput)
+        val exerciseInput = readResource("inputDay08.txt")!!
+        val treeMap = parseTreeMap(exerciseInput)
         Then("it should find the best scenic score") {
             bestScenicScore(treeMap) shouldBe 392080
         }

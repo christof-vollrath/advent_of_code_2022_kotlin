@@ -88,9 +88,9 @@ class Day07Part1: BehaviorSpec() { init {
         }
     }
     Given("exercise input") {
-        val execiseInput = readResource("inputDay07.txt")!!
+        val exerciseInput = readResource("inputDay07.txt")!!
         When("parsed, executed and total size calculated") {
-            val fileSystem = executeFileSystemCommands(parseFileSystemCommands(execiseInput))
+            val fileSystem = executeFileSystemCommands(parseFileSystemCommands(exerciseInput))
             fileSystem.calculateTotalSizes()
             Then("total size should be right") {
                 fileSystem.root.totalSize shouldBe 42080344
@@ -116,8 +116,8 @@ class Day07Part2: BehaviorSpec() { init {
         }
     }
     Given("exercise input") {
-        val execiseInput = readResource("inputDay07.txt")!!
-        val commands = parseFileSystemCommands(execiseInput)
+        val exerciseInput = readResource("inputDay07.txt")!!
+        val commands = parseFileSystemCommands(exerciseInput)
         val fileSystem = executeFileSystemCommands(commands)
         fileSystem.calculateTotalSizes()
         When("finding dir to delete") {
